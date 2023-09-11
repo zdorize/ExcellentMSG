@@ -1,17 +1,40 @@
-# Made by AmazingPika
+# made by AmazingPika
+
+options:
+    to_prefix: &x&f&b&0&0&0&0&lTO&x&f&b&0&0&0&0
+    from_prefix: &x&f&b&0&0&0&0&lFROM&x&f&b&0&0&0&0
+    color: &x&f&b&0&0&0&0
+
+on load:
+    send "███████╗██╗  ██╗ ██████╗███████╗██╗     ██╗     ███████╗███╗   ██╗████████╗" to console
+    send "██╔════╝╚██╗██╔╝██╔════╝██╔════╝██║     ██║     ██╔════╝████╗  ██║╚══██╔══╝" to console
+    send "█████╗   ╚███╔╝ ██║     █████╗  ██║     ██║     █████╗  ██╔██╗ ██║   ██║   " to console
+    send "██╔══╝   ██╔██╗ ██║     ██╔══╝  ██║     ██║     ██╔══╝  ██║╚██╗██║   ██║   " to console
+    send "███████╗██╔╝ ██╗╚██████╗███████╗███████╗███████╗███████╗██║ ╚████║   ██║   " to console
+    send "╚══════╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   " to console
+    send " " to console                                                                           
+    send "                  ███╗   ███╗███████╗ ██████╗                              " to console
+    send "                  ████╗ ████║██╔════╝██╔════╝                              " to console
+    send "                  ██╔████╔██║███████╗██║  ███╗                             " to console
+    send "                  ██║╚██╔╝██║╚════██║██║   ██║                             " to console
+    send "                  ██║ ╚═╝ ██║███████║╚██████╔╝                             " to console
+    send "                  ╚═╝     ╚═╝╚══════╝ ╚═════╝                              " to console
+    send "                         -by AmazingPika                                   " to console
+                                                                           
 
 command /msg [<player>] [<text>]:
     usage: /msg <player> <text>
-    aliases: /m, /dm
+    aliases: /m, /whisper, /dm, /w
     trigger:
-        set {chat.private.reply.%player%} to arg 1
-        set {chat.private.reply.%arg 1%} to player
-        send "&6TO: %arg 1% &8-> &b%arg 2%" to player
-        play sound "block.note_block.guitar" to arg 1 at volume 1 at pitch 2 
-        send "&6FROM: %player% &8-> &b%arg 2%" to arg 1
+        set {chat::reply::%player%} to arg 1
+        set {chat::reply::%arg 1%} to player
+        send "{@to_prefix}: %arg 1% &7&o> {@color}%arg 2%" to player
+        send "{@from_prefix}: %player% &7&o> {@color}%arg 2%" to arg 1
+        play sound "block.note_block.guitar" at volume 1 at pitch 2 to arg 1
+
 command /reply [<text>]:
-    aliases: /r
+    aliases: /r, /respond
     trigger:
-        send "&6TO: %{chat.private.reply.%player%}% &e->&6 %arg 1%" to player
-        send "&6FROM: %player% &8-> &b%arg 1%" to {chat.private.reply.%player%}
-        play sound "block.note_block.guitar" at volume 1 at pitch 2        
+        send "{@to_prefix}: %{chat::reply::%player%}% &7&o> {@color}%arg 1%" to player
+        send "{@from_prefix}: %player% &7&o> {@color}%arg 1%" to {chat::reply::%player%}
+        play sound "block.note_block.guitar" at volume 1 at pitch 2 
