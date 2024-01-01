@@ -1,4 +1,4 @@
-# made by AmazingPika
+# made by Dorize
 
 options:
     to_prefix: &x&f&b&0&0&0&0&lTO&x&f&b&0&0&0&0
@@ -19,7 +19,7 @@ on load:
     send "                  ██║╚██╔╝██║╚════██║██║   ██║                             " to console
     send "                  ██║ ╚═╝ ██║███████║╚██████╔╝                             " to console
     send "                  ╚═╝     ╚═╝╚══════╝ ╚═════╝                              " to console
-    send "                         -by AmazingPika                                   " to console
+    send "                         -by Dorize                                        " to console
                                                                            
 
 command /msg [<player>] [<text>]:
